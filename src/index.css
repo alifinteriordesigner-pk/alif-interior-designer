@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ivory: #faf6ef;
+  --color-cream: #f3ece1;
+  --color-sand: #e6dccc;
+  --color-line: #d9cdbb;
+  --color-taupe: #6b5f52;
+  --color-wood: #9a7650;
+  --color-bronze: #b08d5a;
+  --color-bronze-dark: #7a5a32;
+  --color-charcoal: #2a2623;
+  --color-ink: #1c1917;
+
+  --font-serif: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Jost Variable', 'Jost', ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-charcoal antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-medium text-ink;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-sand text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-bronze-dark);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: var(--color-bronze);
+  }
+
+  dialog::backdrop {
+    background: rgb(20 17 15 / 0.92);
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-sans text-[0.78rem] font-medium tracking-[0.22em] text-bronze-dark uppercase;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply block h-px w-8 bg-bronze;
+  }
+
+  .prose-site p + p {
+    @apply mt-5;
+  }
+
+  .link-underline {
+    @apply inline-flex items-center gap-2 font-medium text-ink;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.35s var(--ease-soft), color 0.2s;
+  }
+
+  .link-underline:hover {
+    background-size: 40% 1px;
+    @apply text-bronze-dark;
+  }
+
+  .img-zoom {
+    transition: transform 0.9s var(--ease-soft);
+  }
+
+  .group:hover .img-zoom,
+  .group:focus-visible .img-zoom {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .group:hover .img-zoom,
+  .group:focus-visible .img-zoom {
+    transform: none;
+  }
+}
