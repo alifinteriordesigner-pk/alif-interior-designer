@@ -77,7 +77,7 @@ export const business = {
    * 'https://alifinteriordesigner.pk' or 'https://your-project.vercel.app'.
    * Used for canonical URLs, social previews and the sitemap.
    */
-  siteUrl: '',
+  siteUrl: 'https://alif-interior-designer.vercel.app',
 
   seo: {
     title: 'Alif Interior Designer — Interior Design Studio',
